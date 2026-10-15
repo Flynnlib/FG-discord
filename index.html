@@ -1,1 +1,293 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>API Docs | Factorio</title><link href="https://cdn.factorio.com/assets/fonts/titillium-web.css" rel="stylesheet"><link href="https://cdn.factorio.com/assets/fonts/roboto-mono.css" rel="stylesheet"><link href="style.css?v=4745c0f6" rel="stylesheet" type="text/css"><meta name="viewport" content="width=device-width"><link rel="shortcut icon" href="static/favicon.png"><script src="script.js?v=4745c0f6"></script></head><body class="docs docs-wide"><div id="top" class="top-bar mb32"><div class="top-bar-inner"><div class="sites links flex flex-items-baseline" style="width: 100%"><span><a href="https://factorio.com" style="color: #7dcaed;">Factorio.com</a><span class="separator">|</span><a href="https://forums.factorio.com/" style="color: #7dcaed;">Forums</a><span class="separator">|</span><a href="https://wiki.factorio.com/" style="color: #7dcaed;">Wiki</a><span class="separator">|</span><a href="https://mods.factorio.com" style="color: #7dcaed;">Mod Portal</a><span class="separator">|</span><a href="index.html" class="sites-current">API Docs</a></span><span style="margin-left: auto;"> </span></div></div></div><div class="container"><div class="container-inner"> <h1 class="ml8 mr8" style="position: relative;"> Factorio API Docs <a href="/" class="version-link" style="color: #ffe6c0;"><span class="version-string">Version</span> 2.0.73 <img src="static/collapse-symbol.png" class="collapse-icon"></a></h1><div id="docs-layout-panel" class="panel flex-column pb0 overflow-unset"><div class="panel-inset mt0"><p>This site contains the reference documentation for creating Factorio mods, as well as a few auxiliary topics. Mods can modify gameplay in a variety of ways, such as adding new machines or showing informative GUIs. They are distributed via the <a href="https://mods.factorio.com">mod portal</a>, making them accessible through the in-game mod manager. <p>The API is split into three distinct parts: The <b>settings</b>, <b>prototype</b>, and <b>runtime</b> stages, which are introduced in more detail below. Mods go through these stages in a specific way, which is known as the <a href="auxiliary/data-lifecycle.html">Data Lifecycle</a>. Understanding it is essential to writing a properly working mod. <p>Mods are written in a <a href="auxiliary/libraries.html">modified version</a> of <a href="https://www.lua.org/manual/5.2/">Lua 5.2</a>, and need to follow a certain <a href="auxiliary/mod-structure.html">structure</a>. A tutorial-based introduction to modding can be found on the <a href="https://wiki.factorio.com/Tutorial:Modding_tutorial/Gangsir">wiki</a>. <h3><a href="https://wiki.factorio.com/Tutorial:Mod_settings" style="color: #e69100;">Settings Stage</a> <small><i>- settings</i></small></h3><p>The settings stage takes place during game start-up, allowing mods to define the setting prototypes they need. Their documentation is found on the wiki. <h3><a href="index-prototype.html" style="color: #e69100;">Prototype Stage</a> <small><i>- data</i></small></h3><p>The prototype stage takes place during game start-up as well, with the goal of providing the game with <a href="prototypes.html">prototypes</a>, which are the templates for crafting machines, recipes, and more. <h3><a href="index-runtime.html" style="color: #e69100;">Runtime Stage</a> <small><i>- control</i></small></h3><p>The runtime stage takes place alongside normal gameplay, and allows interaction with the game world in a number of ways. It is based on <a href="events.html">events</a> being fired for mods to react to, with the API functionality being provided via objects of various <a href="classes.html">classes</a>. <p>Additionally, several <a href="index-auxiliary.html">auxiliary topics</a> are explored separately. </div></div></div></div><div class="footer"><div class="panel"><div class="panel-inset m0 text-center"> Copyright © Wube Software <span class="separator">|</span><a href="license.html">License</a><span class="separator">|</span><a href="static/archive.zip">Download</a><span class="separator">|</span><a href="https://forums.factorio.com/viewforum.php?f=233" target="_blank">Feedback</a></div></div></div></body></html>
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FriendGroupTalks ✡</title>
+<style>
+:root{--bg:#0a1428;--p:#0e1b36;--p2:#14264a;--ln:#1f3358;--acc:#4d7cff;--gold:#f5c542;--tx:#e8eefc;--mu:#8fa3c8;
+--pat:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><path d='M60 20 94.6 80H25.4ZM60 100 25.4 40h69.2Z' fill='none' stroke='%23ffffff' stroke-opacity='.05' stroke-width='3' stroke-linejoin='round'/></svg>")}
+*{box-sizing:border-box;margin:0}
+body{font:15px/1.4 system-ui,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--tx);height:100dvh;overflow:hidden}
+[hidden]{display:none!important}
+button{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:8px 12px;background:var(--p2);color:var(--tx);transition:.15s}
+button:hover{background:#1c3668}
+button:disabled{opacity:.6;cursor:default}
+input{-webkit-user-select:text;user-select:text;font:inherit;background:var(--bg);border:1px solid var(--ln);color:var(--tx);border-radius:10px;padding:10px 12px;outline:0}
+input:focus{border-color:var(--acc)}
+.st{width:1em;height:1em;vertical-align:-.12em}
+.flag{width:96px;height:69px;border-radius:8px;box-shadow:0 4px 18px #0006;display:block}
+.logo{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#0038b8,#4d7cff);display:grid;place-items:center;color:#fff;font-size:26px}
+#login{position:relative;height:100%;display:grid;place-items:center;background:radial-gradient(circle at 30% 15%,#143a8c,var(--bg) 60%)}
+#login::before{content:"";position:absolute;inset:0;background:var(--pat);animation:drift 40s linear infinite}
+@keyframes drift{to{background-position:240px 240px}}
+.card{position:relative;background:var(--p);border:1px solid var(--ln);padding:34px 30px;border-radius:22px;width:min(92vw,390px);display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;box-shadow:0 24px 70px #0009}
+.card h1{font-size:28px;background:linear-gradient(90deg,#fff,#8fb0ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card p{color:var(--mu);font-size:14px}.card input,.card button{width:100%}
+.card #go{background:linear-gradient(90deg,#0038b8,#4d7cff);padding:12px;font-weight:600}
+.he{color:var(--gold);font-weight:600}
+#status{min-height:18px;font-size:13px;color:var(--mu)}#status.err{color:#ff7b7b}
+#app{display:grid;grid-template-columns:72px 250px 1fr 220px;height:100dvh}
+#rail{background:var(--bg);padding:14px 0;display:flex;flex-direction:column;align-items:center;gap:14px}
+#rail .flag{width:48px;height:35px;border-radius:6px}
+#side,#members{background:var(--p);padding:14px;overflow:auto;border-right:1px solid var(--ln)}
+#members{border-right:0;border-left:1px solid var(--ln)}
+#side h2{font-size:16px;padding:2px 6px 14px;border-bottom:1px solid var(--ln);margin-bottom:8px}
+#side h2 .st{color:var(--gold)}
+.lbl{font-size:11px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.6px;margin:14px 6px 6px}
+.ch{padding:8px 10px;border-radius:8px;color:var(--mu);cursor:pointer;white-space:nowrap}
+.ch:hover{background:var(--p2);color:var(--tx)}.ch.on{background:var(--p2);color:#fff;box-shadow:inset 3px 0 var(--acc)}
+#fact{background:var(--p2);border:1px solid var(--ln);border-radius:12px;padding:12px;margin-top:16px;font-size:13px;color:var(--mu)}
+#fact b{color:var(--gold);display:block;margin-bottom:4px}#ft{transition:opacity .3s}
+#invite{margin-top:14px;width:100%;background:linear-gradient(90deg,#0038b8,#4d7cff)}
+main{background:var(--bg);display:flex;flex-direction:column;min-width:0;height:100dvh}
+#tick{overflow:hidden;white-space:nowrap;background:linear-gradient(90deg,#0038b8,#1f5ae0,#0038b8);color:#fff;font-size:13px;padding:6px 0}
+.run{display:inline-block;animation:run 70s linear infinite}@keyframes run{to{transform:translateX(-50%)}}
+header{display:flex;align-items:center;gap:8px;padding:12px 18px;border-bottom:1px solid var(--ln);font-size:16px;background:var(--p)}
+.sp{flex:1}#shab{font-size:13px;color:var(--mu)}#shab.gold{color:var(--gold);font-weight:600}
+#callBtn{background:#1f9d55}
+#callArea{background:#060d1c;padding:10px}
+#tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
+.tile{position:relative}.tile video{width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--p);border-radius:12px;display:block}
+.tile span{position:absolute;left:8px;bottom:8px;background:#000a;padding:2px 8px;border-radius:6px;font-size:12px}
+.bar{display:flex;gap:8px;justify-content:center;margin-top:10px}.red{background:#d93a41}
+#feed{flex:1;overflow:auto;padding:12px 18px;background:var(--pat),var(--bg)}
+.msg{display:flex;gap:12px;padding:6px 0;animation:in .2s}
+@keyframes in{from{opacity:0;transform:translateY(6px)}}
+.av{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#fff;flex:none}
+.msg time{font-size:11px;color:var(--mu);margin-left:8px}
+.tx{word-break:break-word;margin-top:2px}.tx img{max-width:min(320px,100%);border-radius:12px;display:block;margin-top:4px}.tx a{color:#7fa6ff}
+.sys{text-align:center;color:var(--mu);font-size:12px;padding:6px}.sys::before,.sys::after{content:" ✡ ";color:var(--gold)}
+#gifp{background:var(--p);border:1px solid var(--ln);margin:0 18px;border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:8px}
+#gifs{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:6px;max-height:220px;overflow:auto}
+#gifs img{width:100%;height:90px;object-fit:cover;border-radius:8px;cursor:pointer}#gifs img:hover{outline:2px solid var(--acc)}
+#chips{display:flex;gap:6px;padding:6px 18px 0;overflow-x:auto}
+#chips button{white-space:nowrap;font-size:13px;border-radius:99px;padding:5px 12px;border:1px solid var(--ln)}
+footer{display:flex;gap:8px;padding:10px 18px 14px}footer #in{flex:1}#send{background:var(--acc)}
+.mem{display:flex;gap:10px;align-items:center;padding:6px;border-radius:8px}.mem .av{width:32px;height:32px;font-size:13px}
+@media(max-width:900px){#app{grid-template-columns:1fr}#rail,#members{display:none}#side{display:flex;gap:6px;align-items:center;overflow-x:auto;padding:8px;border:0}#side h2,.lbl,#invite,#fact{display:none}#chans{display:flex}}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="star" viewBox="-50 -50 100 100"><path d="M0-40 34.6 20H-34.6ZM0 40-34.6-20H34.6Z" fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/></symbol>
+<symbol id="flag" viewBox="0 0 220 160"><rect width="220" height="160" fill="#fff"/><rect y="16" width="220" height="22" fill="#0038b8"/><rect y="122" width="220" height="22" fill="#0038b8"/><use href="#star" x="70" y="40" width="80" height="80" color="#0038b8"/></symbol>
+</defs></svg>
+
+<div id="login"><div class="card">
+<svg class="flag"><use href="#flag"/></svg>
+<h1>FriendGroupTalks</h1>
+<div class="he">עַם יִשְׂרָאֵל חַי ✡ Am Yisrael Chai</div>
+<p>Our place to chat, share GIFs and hang out on call.</p>
+<input id="name" type="text" placeholder="Your name" maxlength="20" autocomplete="nickname" autofocus>
+<input id="srv" placeholder="Your Render address, e.g. my-app.onrender.com" hidden>
+<div id="status"></div>
+<button id="go" type="button">Jump in</button></div></div>
+
+<div id="app" hidden>
+<nav id="rail"><div class="logo"><svg class="st"><use href="#star"/></svg></div><svg class="flag"><use href="#flag"/></svg></nav>
+<aside id="side"><h2>FriendGroupTalks <svg class="st"><use href="#star"/></svg></h2>
+<div class="lbl">Text channels</div><div id="chans"></div>
+<div class="lbl">Voice</div><div class="ch" id="vc">🔊 Hangout</div>
+<div id="fact"><b>✡ Did you know?</b><span id="ft"></span></div>
+<button id="invite">🔗 Copy invite link</button></aside>
+<main>
+<div id="tick"><span class="run"></span></div>
+<header><b id="ct"></b><span id="shab"></span><span class="sp"></span><button id="callBtn">📞 Join call</button></header>
+<section id="callArea" hidden><div id="tiles"></div>
+<div class="bar"><button id="mic">🎤 Mute</button><button id="cam">📷 Camera</button><button id="scr">🖥️ Share</button><button id="hang" class="red">Leave</button></div></section>
+<div id="feed"></div>
+<div id="gifp" hidden><input id="gq" placeholder="Search GIFs…"><div id="gifs"></div></div>
+<div id="chips"><button data-m="🇮🇱 Am Yisrael Chai! ✡">🇮🇱 Am Yisrael Chai</button><button data-m="🕯️ Shabbat Shalom! שבת שלום">🕯️ Shabbat Shalom</button><button data-m="✡️✡️✡️">✡️</button><button data-m="🍷 L'chaim!">🍷 L'chaim</button><button data-m="🥖 Challah!">🥖 Challah</button></div>
+<footer><button id="gb">GIF</button><button id="ib">📎</button><input id="fi" type="file" accept="image/*" hidden><input id="in" placeholder="Message" autocomplete="off"><button id="send">➤</button></footer>
+</main>
+<aside id="members"><div class="lbl">Members</div><div id="ml"></div></aside>
+</div>
+<script>
+// Get a free key at developers.giphy.com and paste it here for reliable GIF search.
+const GIPHY_KEY='dc6zaTOxFJmzC';
+const CH=['general','memes','gaming','music'],PAL=['#5865f2','#eb459e','#57f287','#fee75c','#ed4245','#3ba5ff','#ff9d4a','#b27bff'];
+const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let me,peer,hostConn,isHost=false,conns={},calls={},members={},msgs={},chan='general',stream=null,room='';
+CH.forEach(c=>msgs[c]=[]);
+try{$('#name').value=localStorage.fgtName||''}catch(e){}
+$('#go').onclick=join;$('#name').onkeydown=e=>{if(e.key=='Enter')join()};
+setTimeout(()=>{try{$('#name').focus()}catch(e){}},50);
+let ws,pcs={},pend={},chain=Promise.resolve();
+const J=JSON.stringify,nameOf=id=>(members[id]||{}).name||'Friend';
+const local=!/^https?:$/.test(location.protocol);
+function status(t,err){const e=$('#status');e.textContent=t;e.className=err?'err':''}
+if(local){$('#srv').hidden=false;try{$('#srv').value=localStorage.fgtSrv||''}catch(e){}
+ status('Opened from a file? Paste your Render address above, or just open your Render link.')}
+function wsUrl(){
+ if(!local)return(location.protocol=='https:'?'wss://':'ws://')+location.host;
+ const v=($('#srv').value||'').trim().replace(/^[a-z]+:\/\//i,'').replace(/[\/?#].*$/,'');
+ if(!v)return null;
+ try{localStorage.fgtSrv=v}catch(e){}
+ return(/^(localhost|127\.|192\.168\.)/.test(v)?'ws://':'wss://')+v;
+}
+function join(){
+ if($('#go').disabled)return;
+ const url=wsUrl();
+ if(!url)return status('Paste your Render address first, e.g. my-app.onrender.com',1);
+ const name=($('#name').value.trim()||'Guest'+Math.floor(Math.random()*999)).slice(0,20);
+ try{localStorage.fgtName=name}catch(e){}
+ me={name,color:PAL[[...name].reduce((a,c)=>a+c.charCodeAt(0),0)%PAL.length]};
+ $('#go').textContent='Connecting…';$('#go').disabled=true;status('Connecting…');
+ connect(url);
+}
+let tm;
+function connect(url){
+ let opened=false;
+ try{ws=new WebSocket(url)}catch(e){$('#go').disabled=false;$('#go').textContent='Jump in';return status('That address does not look right, please check it.',1)}
+ clearTimeout(tm);tm=setTimeout(()=>{if(!opened&&$('#app').hidden)status('Still connecting. A sleeping server can take up to a minute to wake up…')},6000);
+ ws.onopen=()=>{opened=true;clearTimeout(tm);ws.send(J({t:'hello',name:me.name,color:me.color}))};
+ ws.onmessage=e=>{let d;try{d=JSON.parse(e.data)}catch(x){return}handle(d)};
+ ws.onclose=()=>{
+  endCall();clearTimeout(tm);
+  if(!$('#app').hidden)sys('Disconnected, reconnecting…');
+  else if(!opened&&local){$('#go').disabled=false;$('#go').textContent='Jump in';return status('Could not reach that server. Check the address and try again.',1)}
+  else status('Waiting for the server, retrying…');
+  setTimeout(()=>connect(url),2000);
+ };
+}
+function handle(d){
+ switch(d.t){
+ case'init':members=d.members;me=members[d.id];msgs=d.hist;CH.forEach(k=>msgs[k]=msgs[k]||[]);
+  $('#login').hidden=true;$('#app').hidden=false;drawChans();drawMembers();drawFeed();break;
+ case'join':members[d.m.id]=d.m;sys(esc(d.m.name)+' joined');drawMembers();break;
+ case'leave':sys(esc(nameOf(d.id))+' left');delete members[d.id];endpc(d.id);drawMembers();break;
+ case'msg':addMsg(d.m);break;
+ case'callstate':if(members[d.id])members[d.id].inCall=d.inCall;if(!d.inCall)endpc(d.id);drawMembers();break;
+ case'callers':offerTo(d.ids);break;
+ case'sig':chain=chain.then(()=>onsig(d.from,d.d)).catch(()=>{});break;
+ }
+}
+function sendMsg(text,img){
+ text=(text||'').trim();if(!text&&!img)return;
+ if(ws&&ws.readyState==1)ws.send(J({t:'msg',chan,text:text.slice(0,2000),img}));
+}
+$('#ib').onclick=()=>$('#fi').click();
+$('#fi').onchange=e=>{shrink(e.target.files[0]);e.target.value=''};
+$('#in').onpaste=e=>{const f=[...e.clipboardData.files].find(f=>f.type.startsWith('image/'));if(f){e.preventDefault();shrink(f)}};
+function shrink(f){
+ if(!f)return;const im=new Image();
+ im.onload=()=>{const k=Math.min(1,800/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;c.getContext('2d').drawImage(im,0,0,c.width,c.height);sendMsg('',c.toDataURL('image/jpeg',.6));URL.revokeObjectURL(im.src)};
+ im.src=URL.createObjectURL(f);
+}
+
+/* ---------- chat ---------- */
+function addMsg(m){
+ m.name=String(m.name).slice(0,20);m.text=String(m.text).slice(0,2000);
+ m.chan=CH.includes(m.chan)?m.chan:'general';
+ m.color=/^#[0-9a-f]{6}$/i.test(m.color)?m.color:'#5865f2';m.ts=+m.ts||Date.now();m.img=/^data:image\/jpeg;base64,[A-Za-z0-9+\/=]+$/.test(m.img)?m.img:'';
+ msgs[m.chan].push(m);if(msgs[m.chan].length>200)msgs[m.chan].shift();
+ if(m.chan==chan)feedAdd(m);
+}
+function sys(t){const m={sys:1,text:t,chan:'general',ts:Date.now()};msgs.general.push(m);if(chan=='general'&&$('#feed'))feedAdd(m)}
+const fmt=t=>esc(t).replace(/https?:\/\/[^\s<]+/g,u=>/\.(gif|png|jpe?g|webp)(\?|$)|media\d*\.giphy\.com|media\.tenor\.com/i.test(u)?`<img src="${u}" loading="lazy">`:`<a href="${u}" target="_blank" rel="noopener noreferrer">${u}</a>`);
+function msgHTML(m){
+ if(m.sys)return`<div class="sys">${m.text}</div>`;
+ return`<div class="msg"><div class="av" style="background:${m.color}">${esc(m.name[0]||'?').toUpperCase()}</div><div><b style="color:${m.color}">${esc(m.name)}</b><time>${new Date(m.ts).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}</time><div class="tx">${fmt(m.text)}${m.img?`<img src="${m.img}">`:''}</div></div></div>`;
+}
+function feedAdd(m){const f=$('#feed'),end=f.scrollHeight-f.scrollTop-f.clientHeight<120;f.insertAdjacentHTML('beforeend',msgHTML(m));if(end||m.name==me.name)f.scrollTop=f.scrollHeight}
+function drawFeed(){$('#ct').textContent=LBL[chan];$('#in').placeholder='Message '+LBL[chan];$('#feed').innerHTML=msgs[chan].map(msgHTML).join('');$('#feed').scrollTop=1e9}
+function drawChans(){$('#chans').innerHTML=CH.map(c=>`<div class="ch${c==chan?' on':''}" data-c="${c}">${LBL[c]}</div>`).join('')}
+function drawMembers(){$('#ml').innerHTML=Object.values(members).map(m=>`<div class="mem"><div class="av" style="background:${/^#[0-9a-f]{6}$/i.test(m.color)?m.color:'#5865f2'}">${esc(String(m.name)[0]||'?').toUpperCase()}</div><span>${esc(String(m.name).slice(0,20))}${m.inCall?' 🔊':''}</span></div>`).join('')}
+$('#chans').onclick=e=>{const c=e.target.dataset.c;if(c){chan=c;drawChans();drawFeed()}};
+$('#in').onkeydown=e=>{if(e.key=='Enter'){sendMsg($('#in').value);$('#in').value=''}};
+$('#send').onclick=()=>{sendMsg($('#in').value);$('#in').value='';$('#in').focus()};
+$('#invite').onclick=()=>{const u=location.href.split('#')[0];(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(()=>$('#invite').textContent='✅ Copied!',()=>prompt('Copy this link:',u));setTimeout(()=>$('#invite').textContent='🔗 Copy invite link',1800)};
+
+/* ---------- GIFs ---------- */
+let gt;
+$('#gb').onclick=()=>{const p=$('#gifp');p.hidden=!p.hidden;if(!p.hidden&&!$('#gifs').children.length)gifs('')};
+$('#gq').oninput=e=>{clearTimeout(gt);gt=setTimeout(()=>gifs(e.target.value.trim()),400)};
+$('#gifs').onclick=e=>{if(e.target.dataset.u){sendMsg(e.target.dataset.u);$('#gifp').hidden=true}};
+async function gifs(q){
+ try{
+  const r=await(await fetch(`https://api.giphy.com/v1/gifs/${q?'search?q='+encodeURIComponent(q)+'&':'trending?'}api_key=${GIPHY_KEY}&limit=24&rating=pg-13`)).json();
+  $('#gifs').innerHTML=r.data.map(g=>`<img src="${g.images.fixed_height_small.url}" data-u="${g.images.fixed_height.url}">`).join('')||'No GIFs found';
+ }catch(e){$('#gifs').textContent='GIF search is unavailable right now. You can still paste any GIF link into the chat.'}
+}
+
+/* ---------- calls ---------- */
+function tile(id,s,label,mine){
+ let t=document.getElementById('t'+id);
+ if(!t){t=document.createElement('div');t.className='tile';t.id='t'+id;t.innerHTML='<video autoplay playsinline></video><span></span>';$('#tiles').append(t)}
+ const v=t.querySelector('video');v.srcObject=s;v.muted=!!mine;t.querySelector('span').textContent=label;$('#callArea').hidden=false;
+}
+function rmTile(id){const t=document.getElementById('t'+id);t&&t.remove();if(!$('#tiles').children.length)$('#callArea').hidden=true}
+const ICE={iceServers:[{urls:'stun:stun.l.google.com:19302'}]};
+const sig=(to,d)=>ws.send(J({t:'sig',to,d}));
+function mkpc(id){
+ const pc=new RTCPeerConnection(ICE);pcs[id]=pc;
+ stream.getTracks().forEach(t=>pc.addTrack(t,stream));
+ pc.onicecandidate=e=>e.candidate&&sig(id,{c:e.candidate});
+ pc.ontrack=e=>tile(id,e.streams[0],nameOf(id));
+ pc.onconnectionstatechange=()=>{if(pc.connectionState=='failed')endpc(id)};
+ return pc;
+}
+function endpc(id){const p=pcs[id];if(p){p.close();delete pcs[id]}delete pend[id];rmTile(id)}
+async function flush(pc,id){for(const c of pend[id]||[])try{await pc.addIceCandidate(c)}catch(e){}pend[id]=[]}
+async function onsig(from,d){
+ if(!stream)return;
+ if(d.o){
+  if(pcs[from])endpc(from);const pc=mkpc(from);
+  await pc.setRemoteDescription(d.o);await flush(pc,from);
+  const a=await pc.createAnswer();await pc.setLocalDescription(a);sig(from,{a:pc.localDescription});
+ }else if(d.a){const pc=pcs[from];if(pc){await pc.setRemoteDescription(d.a);await flush(pc,from)}}
+ else if(d.c){const pc=pcs[from];if(!pc)return;if(pc.remoteDescription)try{await pc.addIceCandidate(d.c)}catch(e){}else(pend[from]=pend[from]||[]).push(d.c)}
+}
+async function offerTo(ids){
+ for(const id of ids){if(!stream)return;const pc=mkpc(id),o=await pc.createOffer();await pc.setLocalDescription(o);sig(id,{o:pc.localDescription})}
+}
+async function joinCall(){
+ if(stream)return endCall();
+ try{stream=await navigator.mediaDevices.getUserMedia({audio:true,video:true})}
+ catch(e){try{stream=await navigator.mediaDevices.getUserMedia({audio:true})}catch(e2){return alert('Could not access your mic/camera. Check browser permissions.')}}
+ me.inCall=true;tile(me.id,stream,me.name+' (you)',true);
+ $('#callBtn').textContent='📵 Leave call';$('#callBtn').style.background='#da373c';
+ ws.send(J({t:'callstate',inCall:true}));drawMembers();
+}
+function endCall(){
+ Object.keys(pcs).forEach(endpc);
+ if(stream){stream.getTracks().forEach(t=>t.stop());stream=null}
+ if(me)me.inCall=false;$('#tiles').innerHTML='';$('#callArea').hidden=true;
+ $('#callBtn').textContent='📞 Join call';$('#callBtn').style.background='';
+ if(ws&&ws.readyState==1&&me.id){ws.send(J({t:'callstate',inCall:false}));drawMembers()}
+}
+$('#callBtn').onclick=$('#vc').onclick=joinCall;$('#hang').onclick=endCall;
+$('#mic').onclick=()=>{const t=stream&&stream.getAudioTracks()[0];if(t){t.enabled=!t.enabled;$('#mic').textContent=t.enabled?'🎤 Mute':'🔇 Unmute'}};
+$('#cam').onclick=()=>{const t=stream&&stream.getVideoTracks()[0];if(t){t.enabled=!t.enabled;$('#cam').textContent=t.enabled?'📷 Camera':'🚫 Camera off'}};
+$('#scr').onclick=async()=>{
+ if(!stream)return;
+ try{
+  const s=await navigator.mediaDevices.getDisplayMedia({video:true}),tr=s.getVideoTracks()[0],old=stream.getVideoTracks()[0];
+  const sw=t=>Object.values(pcs).forEach(p=>p.getSenders().filter(x=>x.track&&x.track.kind=='video').forEach(x=>x.replaceTrack(t)));
+  sw(tr);$('#t'+me.id+' video').srcObject=s;
+  tr.onended=()=>{if(old){sw(old);$('#t'+me.id+' video').srcObject=stream}};
+ }catch(e){}
+};
+
+/* ---------- Jewish pride extras ---------- */
+const LBL={general:'✡ general · כללי',memes:'😂 memes',gaming:'🎮 gaming',music:'🎶 music · שירים'};
+const TK='עַם יִשְׂרָאֵל חַי ✡ Am Yisrael Chai ✡ 🇮🇱 ✡ שבת שלום ✡ Shabbat Shalom 🕯️ ✡ לשנה הבאה בירושלים ✡ Next year in Jerusalem ✡ Proud Jews, proud Zionists ✡ ';
+$('#tick .run').textContent=TK.repeat(4);
+const FACTS=[
+ 'Hebrew, an ancient language, was revived as an everyday spoken language in modern times. 🇮🇱',
+ 'Israel declared independence on 14 May 1948. Am Yisrael Chai! ✡',
+ 'The Jewish people\u2019s connection to the Land of Israel goes back more than 3,000 years.',
+ 'Israel is nicknamed the \u201cStart-Up Nation\u201d. Waze was born there. 🚗',
+ 'Modern drip irrigation was pioneered by Israeli company Netafim, helping desert farms bloom. 🌱',
+ 'The Dead Sea is the lowest point on land on Earth. Go float! 🌊',
+ 'Hatikvah (התקווה), \u201cthe hope\u201d, is Israel\u2019s national anthem. 🎶',
+ 'Hebrew word of the day: שלום (shalom) means hello, goodbye and peace. 🕊️'];
+let fi=0;function fact(){const e=$('#ft');e.style.opacity=0;setTimeout(()=>{e.textContent=FACTS[fi++%FACTS.length];e.style.opacity=1},300)}
+fact();setInterval(fact,9000);
+(function(){
+ const d=new Date(),w=d.getDay(),h=d.getHours(),s=$('#shab');let t;
+ if(w==6&&h<20||w==5&&h>=17){t='🕯️ Shabbat Shalom! שבת שלום';s.className='gold'}
+ else if(w==6){t='שבוע טוב Shavua tov! ✡'}
+ else if(w==5){t='🕯️ Shabbat starts tonight at sundown'}
+ else{const n=5-w;t='🕯️ Shabbat in '+n+' day'+(n>1?'s':'')}
+ s.textContent=t;
+})();
+$('#chips').onclick=e=>{if(e.target.dataset.m)sendMsg(e.target.dataset.m)};
+</script></body></html>
